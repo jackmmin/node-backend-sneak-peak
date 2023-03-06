@@ -10,9 +10,29 @@ const show = {
     },
 }
 
+const users = {
+    id: ["jongmin", "sungjin", "bumyoung"],
+    password: ["1234", "1234", "123456"]
+}
 const process = {
     login: (req, res) => {
-        console.log(req.body);
+        const id = req.body.id;
+        const password = req.body.password;
+
+        if(users.id.includes(id)){
+            const idx = users.id.indexOf(id);
+
+            if(users.password[idx] === password){
+                return res.json({
+                    success: true
+                });
+            };
+        };
+        
+        return res.json({
+            success: false,
+            msg: "로그인에 실패하셨습니다."
+        });
     },
 }
 
