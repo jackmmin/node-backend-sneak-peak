@@ -5,7 +5,7 @@
 2. 라우팅 분리<br>
 3. 데이터 전송<br>
 4. API 생성<br> 
-5. front 로그인 기능 구현 & 모델 구현
+5. front 로그인 기능 구현 & 모델 구현<br>
 위 항목들을 학습합니다.
 
 > 출처: https://youtube.com/playlist?list=PLSK4WsJ8JS4cQ-niGNum4bkK_THHOizTs
