@@ -4,8 +4,9 @@
 1. 로그인<br>
 2. 라우팅 분리<br>
 3. 데이터 전송<br>
-4. API<br> 
-위 항목들을 학습합니다. 고도화에 따라 수정될 수 있으며 어디까지나 학습용으로 기록합니다.
+4. API 생성<br> 
+5. front 로그인 기능 구현 & 모델 구현
+위 항목들을 학습합니다.
 
 > 출처: https://youtube.com/playlist?list=PLSK4WsJ8JS4cQ-niGNum4bkK_THHOizTs
 
@@ -13,5 +14,6 @@
 - Visual Studio Code
 - node 18.14.0
 - git 2.32.0
+- nodemon 2.0.21
 
 # 따라하기
