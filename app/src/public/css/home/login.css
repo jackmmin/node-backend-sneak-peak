@@ -62,7 +62,7 @@ html {
     font-size: 12px;
   }
   
-  .login-box form a {
+  .login-box form a#loginBtn {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -72,8 +72,12 @@ html {
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+    letter-spacing: 4px;
+    width: 100%;
+  }
+
+  .login-box form a#registerBtn {
+    color: #008b92;
   }
   
   .login-box a:hover {
