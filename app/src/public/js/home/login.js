@@ -3,6 +3,7 @@
 const id = document.querySelector("#id");
 const password = document.querySelector("#password");
 const loginBtn = document.querySelector("#loginBtn");
+const registerBtn = document.querySelector("#registerBtn");
 
 loginBtn.addEventListener("click", login);
 

@@ -5,12 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="/css/home/login.css">
     <script src="/js/home/login.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <input id="id" type="text" placeholder="아이디"><br>
-    <input id="password" type="text" placeholder="비밀번호"><br>
-    <button id="loginBtn">로그인</button>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form>
+          <div class="user-box">
+            <input id="id" type="text" name="" required="" placeholder="아이디">
+          </div>
+          <div class="user-box">
+            <input id="password" type="password" name="" required="" placeholder="비밀번호">
+          </div>
+          <a id="loginBtn" href="#">
+            LOGIN
+          </a>
+          <a id="registerBtn" href="#">
+            REGISTER
+          </a>
+        </form>
+      </div>
 </body>
 </html>
+
+<!-- Copyright (c) 2023 by Soufiane Khalfaoui HaSsani (https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda) -->
