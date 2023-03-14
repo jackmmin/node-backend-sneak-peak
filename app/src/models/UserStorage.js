@@ -1,29 +1,15 @@
 "use strict";
 
+const fs = require("fs").promises;
+
 class UserStorage{
     // static은 따로 new로 생성하지 않아도 접근할 수 있도록 해준다.
     // 하지만 그렇게 되면 바로 데이터에 접근할 수 있기 때문에 #(은닉화)을 사용하여 undefined로 출력되게 하고
     // 따로 출력함수를 만들어 은닉화된 데이터를 사용할 수 있게 해준다.
-    static #users = { // #은 은닉화를 의미.
-        id: ["jongmin", "sungjin", "bumyoung"],
-        password: ["1234", "1234", "123456"],
-        name: ["종민", "성진", "범영"]
-    }
+    // 개발 문화로, 은닉화를 사용하는 함수를 가장 위에 위치하도록 하는 게 좋다.
 
-    // 은닉화된 데이터에 접근하기 위한 함수
-    static getUsers(...fields){
-        const users = this.#users;
-        const newUsers = fields.reduce((newUsers, field) => {
-            if(users.hasOwnProperty(field)){
-                newUsers[field] = users[field];
-            }
-            return newUsers;
-        }, {});
-        return newUsers;
-    }
-
-    static getUserInfo(id){
-        const users = this.#users;
+    static #getUserInfo(data, id) {
+        const users = JSON.parse(data);
         const idx = users.id.indexOf(id);
         const usersKeys = Object.keys(users); // [id, password, name]
         const userInfo = usersKeys.reduce((newUser, key) => {
@@ -33,9 +19,32 @@ class UserStorage{
 
         return userInfo;
     }
+    
+    // 은닉화된 데이터에 접근하기 위한 함수
+    static getUsers(...fields){
+        // const users = this.#users;
+        const newUsers = fields.reduce((newUsers, field) => {
+            if(users.hasOwnProperty(field)){
+                newUsers[field] = users[field];
+            }
+            return newUsers;
+        }, {});
+        return newUsers;
+    }
 
+    // 사용자 정보 가져오기
+    static getUserInfo(id){
+        return fs
+            .readFile("./src/databases/users.json")
+            .then((data) => {
+                return this.#getUserInfo(data, id);
+            })
+            .catch(console.error);
+    }
+
+    // 사용자 정보 저장( 회원가입 )
     static save(userInfo){
-        const users = this.#users;
+        // const users = this.#users;
         users.id.push(userInfo.id);
         users.name.push(userInfo.name);
         users.password.push(userInfo.password);
