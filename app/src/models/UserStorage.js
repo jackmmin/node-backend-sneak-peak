@@ -19,10 +19,11 @@ class UserStorage{
 
         return userInfo;
     }
-    
-    // 은닉화된 데이터에 접근하기 위한 함수
-    static getUsers(...fields){
-        // const users = this.#users;
+
+    static #getUsers(data, isAll, fields) {
+        const users = JSON.parse(data);
+        if (isAll) return users;
+
         const newUsers = fields.reduce((newUsers, field) => {
             if(users.hasOwnProperty(field)){
                 newUsers[field] = users[field];
@@ -30,6 +31,16 @@ class UserStorage{
             return newUsers;
         }, {});
         return newUsers;
+    }
+    
+    // 은닉화된 데이터에 접근하기 위한 함수
+    static getUsers(isAll, ...fields){
+        return fs
+            .readFile("./src/databases/users.json")
+            .then((data) => {
+                return this.#getUsers(data, isAll, fields);
+            })
+            .catch(console.error);
     }
 
     // 사용자 정보 가져오기
@@ -43,12 +54,21 @@ class UserStorage{
     }
 
     // 사용자 정보 저장( 회원가입 )
-    static save(userInfo){
-        // const users = this.#users;
+    static async save(userInfo){
+        const users = await this.getUsers(true);
+        if(users.id.includes(userInfo.id)){
+            throw "이미 존재하는 아이디입니다.";
+        }
+
         users.id.push(userInfo.id);
         users.name.push(userInfo.name);
         users.password.push(userInfo.password);
+        
+        // 데이터 추가
+        fs.writeFile("./src/databases/users.json", JSON.stringify(users));
         return {success: true};
+
+
     }
 }
 
