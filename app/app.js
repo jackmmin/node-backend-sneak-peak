@@ -3,6 +3,11 @@
 // 모듈
 const express = require("express");
 const bodyParser = require("body-parser");
+// 어떤 os에서 개발하더라도 디 동일하게 등록하고 가져올 수 있도록 하는 모듈
+const dotenv = require("dotenv");
+// config 안에 .env 파일path를 임의로 등록할 수도 있다.
+dotenv.config();
+
 const app = express();
 
 // 라우팅
