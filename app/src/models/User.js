@@ -7,19 +7,26 @@ class User {
         this.body = body;
     }
 
+    // 로그인
     async login(){
         const client = this.body;
-        const {id, password} = await UserStorage.getUserInfo(client.id);
-        
-        if(id){ // id가 존재하면
-            if(id === client.id && password === client.password){ // id가 일치하고 password가 일치하면
-                return {success: true};
-            } // password가 일치하지 않으면
-            return {success: false, msg: "비밀번호가 틀렸습니다."};
-        } // id가 존재하지 않으면
-        return {success: false, msg: "존재하지 않는 아이디입니다."};
+        try{
+
+            const {id, password} = await UserStorage.getUserInfo(client.id);
+            
+            if(id){ // id가 존재하면
+                if(id === client.id && password === client.password){ // id가 일치하고 password가 일치하면
+                    return {success: true};
+                } // password가 일치하지 않으면
+                return {success: false, msg: "비밀번호가 틀렸습니다."};
+            } // id가 존재하지 않으면
+            return {success: false, msg: "존재하지 않는 아이디입니다."};
+        } catch(err){
+            return {success: false, msg: "'로그인'에서 오류가 발생했습니다."};
+        }
     }
     
+    // 회원가입
     async register(){
         const client = this.body;
 
@@ -27,7 +34,7 @@ class User {
             const response = await UserStorage.save(client);
             return response;
         } catch(err){
-            return {success: false, msg: err};
+            return {success: false, msg: "'회원가입'에서 오류가 발생했습니다."};
         }
     }
 }
