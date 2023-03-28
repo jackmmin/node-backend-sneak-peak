@@ -20,7 +20,8 @@
 17. User 모델 구현<br>
 18. 로그인 화면 꾸미기<br>
 19. 회원가입 페이지 구현<br>
-20. AWS RDS 데이터베이스 <br>
+20. AWS RDS 데이터베이스 구축 및 연동<br>
+21. 로그관리<br>
 위 항목들을 학습합니다.
 
 > 출처: https://youtube.com/playlist?list=PLSK4WsJ8JS4cQ-niGNum4bkK_THHOizTs
