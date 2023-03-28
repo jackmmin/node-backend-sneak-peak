@@ -15,7 +15,8 @@ const accessLogStream = require("./src/config/log");
 // 라우팅
 const home = require("./src/routes/home");
 
-
+const logger = require("./src/config/logger");
+logger.info("Hello World");
 
 // 웹 세팅
 app.set("views", "./src/views");
