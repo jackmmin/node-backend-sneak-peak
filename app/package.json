@@ -8,7 +8,8 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.21",
-    "rotating-file-stream": "^3.1.0"
+    "rotating-file-stream": "^3.1.0",
+    "winston": "^3.8.2"
   },
   "name": "login",
   "version": "1.0.0",

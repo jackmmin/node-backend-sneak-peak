@@ -14,5 +14,4 @@ const accessLogStream = rfs.createStream(
     }
 );
 
-
 module.exports = accessLogStream;
