@@ -1,3 +1,4 @@
+// 로그관리 라이브러리 morgan은 잘 사용하지 않음.
 const {createLogger, transports, format} = require("winston");
 const {combine, timestamp, label, printf, simple, colorize} = format;
 
@@ -26,13 +27,11 @@ const opts = {
     file: new transports.File({
         filename: "access.log",
         dirname: "./log",
-        options: {encoding: 'utf8'},
         level: "info",
         format: printLogFormat.file,
     }),
 
     console: new transports.Console({
-        options: {encoding: 'utf8'},
         level: "info",
         format: printLogFormat.console,
     }),
@@ -44,6 +43,10 @@ const logger = createLogger({
 
 if(process.env.NODE_ENV !== "production"){
     logger.add(opts.console);
+};
+
+logger.stream = {
+    write: (message) => logger.info(message),
 };
 
 module.exports = logger;
