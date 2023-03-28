@@ -11,7 +11,6 @@ class User {
     async login(){
         const client = this.body;
         try{
-
             const {id, password} = await UserStorage.getUserInfo(client.id);
             
             if(id){ // id가 존재하면
@@ -22,7 +21,7 @@ class User {
             } // id가 존재하지 않으면
             return {success: false, msg: "존재하지 않는 아이디입니다."};
         } catch(err){
-            return {success: false, msg: "'로그인'에서 오류가 발생했습니다."};
+            return {success: false, err};
         }
     }
     
@@ -34,7 +33,7 @@ class User {
             const response = await UserStorage.save(client);
             return response;
         } catch(err){
-            return {success: false, msg: "'회원가입'에서 오류가 발생했습니다."};
+            return {success: false, err};
         }
     }
 }

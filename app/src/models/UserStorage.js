@@ -40,13 +40,10 @@ class UserStorage{
     // 사용자 정보 가져오기
     static getUserInfo(id){
         return new Promise((resolve, reject) => {
-            const query = "SELECT * FROM users WHERE id = ?;";
+            const query = "SELECT * FROM abc WHERE id = ?;";
             db.query(query, [id],  (err, data) => {
-                if(err) reject({
-                    success: false,
-                    msg: "'사용자 정보 가져오기'에서 오류가 발생했습니다."
-                });
-                resolve(data[0]);
+                if(err) reject(`${err}`);
+                else resolve(data[0]);
             });
         });
     }
@@ -54,16 +51,13 @@ class UserStorage{
     // 사용자 정보 저장( 회원가입 )
     static async save(userInfo){
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO users(id, name, password) VALUES(?, ?, ?);";
+            const query = "INSERT INTO abc(id, name, password) VALUES(?, ?, ?);";
             db.query(
                 query,
                 [userInfo.id, userInfo.name, userInfo.password],
                 (err) => {
-                    if(err) reject({
-                        success: false,
-                        msg: "'사용자 정보 저장( 회원가입 )'에서 오류가 발생했습니다."
-                    });
-                    resolve({success: true});
+                    if(err) reject(`${err}`);
+                    else resolve({success: true});
                 }
             );
         });
